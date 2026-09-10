@@ -1,3 +1,4 @@
+import DebounceSearchDemo from "./components/DebounceSearchDemo";
 import PaginationDemo from "./components/PaginationDemo";
 
  function App(){
@@ -5,6 +6,7 @@ import PaginationDemo from "./components/PaginationDemo";
     <div>
 
     <PaginationDemo/>
+    <DebounceSearchDemo/>
     </div>
   )
  }
