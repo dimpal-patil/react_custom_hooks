@@ -1,78 +1,73 @@
-# React + TypeScript + Vite
+# React Custom Hooks – Pagination & Debounce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates two custom React hooks:
 
-Currently, two official plugins are available:
+* `usePagination` – manages pagination logic for lists.
+* `useDebounce` – delays updating a value until the user stops changing it.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+### usePagination
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+* Handles total items and items per page
+* Calculates total pages
+* Tracks the current page
+* Calculates start and end indexes
+* Supports Previous and Next navigation
+* Supports jumping directly to a specific page
+* Disables navigation buttons when needed
+* Handles the last page correctly
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+### useDebounce
 
-## Expanding the ESLint configuration
+* Accepts a value and delay
+* Uses a default delay of 500ms
+* Delays updating the debounced value
+* Clears the previous timer when the value changes
+* Demonstrates a simulated search using the debounced value
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Demo
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Pagination Demo
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Displays 100 items with 10 items per page.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Users can:
 
+* Navigate using Previous and Next
+* Jump directly to a page
+* See the current page and total pages
+* View the items for the current page
+
+### Debounce Search Demo
+
+Users can enter a search term and see:
+
+* Current input value
+* Debounced value after 500ms
+* Simulated search results
+
+The console also logs the simulated search when the debounced value changes.
+
+## Technologies
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* React Hooks
+* Custom Hooks
+
+## Custom Hooks
+
+```text
+src/
+├── hooks/
+│   ├── usePagination.ts
+│   └── useDebounce.ts
+│
+└── components/
+    ├── PaginationDemo.tsx
+    └── DebounceSearchDemo.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
